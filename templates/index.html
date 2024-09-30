@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>IP Address Information</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        line-height: 1.6;
+        margin: 0;
+        padding: 20px;
+        background-color: #f4f4f4;
+      }
+      .container {
+        max-width: 800px;
+        margin: auto;
+        background: white;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+      h1 {
+        color: #333;
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+      }
+      th,
+      td {
+        padding: 12px;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+      }
+      th {
+        background-color: #f2f2f2;
+        font-weight: bold;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>IP Address Information</h1>
+      {% if ip_info %}
+      <table>
+        <tr>
+          <th>Information</th>
+          <th>Value</th>
+        </tr>
+        <tr>
+          <td>IPv4 Address</td>
+          <td>{{ ip_info.ipv4 }}</td>
+        </tr>
+        <tr>
+          <td>IPv6 Address</td>
+          <td>{{ ip_info.ipv6 }}</td>
+        </tr>
+        <tr>
+          <td>Country</td>
+          <td>{{ ip_info.country }}</td>
+        </tr>
+        <tr>
+          <td>Region</td>
+          <td>{{ ip_info.region }}</td>
+        </tr>
+        <tr>
+          <td>City</td>
+          <td>{{ ip_info.city }}</td>
+        </tr>
+        <tr>
+          <td>Latitude</td>
+          <td>{{ ip_info.latitude }}</td>
+        </tr>
+        <tr>
+          <td>Longitude</td>
+          <td>{{ ip_info.longitude }}</td>
+        </tr>
+        <tr>
+          <td>ISP</td>
+          <td>{{ ip_info.isp }}</td>
+        </tr>
+        <tr>
+          <td>ASN</td>
+          <td>{{ ip_info.asn }}</td>
+        </tr>
+        <tr>
+          <td>Country Code</td>
+          <td>{{ ip_info.country_code }}</td>
+        </tr>
+      </table>
+      {% else %}
+      <p>Unable to retrieve IP information. Please try again later.</p>
+      {% endif %}
+    </div>
+  </body>
+</html>
