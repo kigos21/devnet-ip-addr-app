@@ -5,7 +5,7 @@ import requests
 app = Flask(__name__)
 
 # Replace with your actual API key from ipstack.com
-API_KEY = "YOUR_API_KEY_HERE"
+API_KEY = os.environ.get('IPSTACK_API_KEY')
 
 def get_ip_info():
     try:
@@ -31,6 +31,10 @@ def get_ip_info():
 def index():
     ip_info = get_ip_info()
     return render_template('index.html', ip_info=ip_info)
+
+@app.route('/about')
+def about():
+    return render_template('about.html')
 
 if __name__ == '__main__':
     app.run(debug=True)

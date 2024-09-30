@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>About Us</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        background: #f3f1ef;
+      }
+      .container {
+        display: flex;
+        flex-direction: column;
+        padding: 2rem 10rem 2rem 10rem;
+      }
+      .container-about {
+        display: flex;
+        flex-direction: column;
+        background: #ffff;
+        padding: 40px;
+        border-radius: 12px;
+        border: 2px black solid;
+        gap: 25px;
+      }
+      h1 {
+        text-align: center;
+        padding: 20px 0px 20px 0px;
+      }
+      p {
+        font-size: 1.2rem;
+      }
+    </style>
+  </head>
+  <body>
+    {% include 'navbar.html' %}
+    <div class="container">
+      <h1>About Us</h1>
+      <div class="container-about">
+        <p>
+          Welcome to our application! We are a dedicated team of developers
+          passionate about creating innovative solutions that make networking
+          simpler and more efficient.
+        </p>
+
+        <p>
+          Our mission is to empower network technicians by providing tools that
+          offer real-time IP addressing information, ensuring they have the
+          resources they need to maintain seamless connectivity.
+        </p>
+
+        <p>
+          With our current project focused on retrieving and displaying IPv4 and
+          IPv6 addresses, we aim to enhance the capabilities of network
+          professionals. Our application not only provides essential IP
+          information but also includes features like geolocation and ISP
+          details to further aid technicians in their work.
+        </p>
+
+        <p>
+          As we grow, we envision expanding our application’s functionalities,
+          with enhancements like advanced analytics, user authentication, and
+          multi-language support. We believe that continuous improvement is key
+          to delivering value to our users.
+        </p>
+
+        <p>
+          Thank you for being a part of our journey. Together, we can shape the
+          future of networking!
+        </p>
+      </div>
+    </div>
+  </body>
+</html>

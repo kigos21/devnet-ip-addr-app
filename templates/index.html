@@ -4,50 +4,133 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>IP Address Information</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Open+Sans:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      integrity="sha512-p0x0jI4+3+Z2g+H1HcE+ly7Iy7M6JgB2mDzbHQ5ZX2sYhC5V6cV7QFV9UkDrhYkKxOt3c+YjvU1qj6X3zWfaGQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
     <style>
-      body {
-        font-family: Arial, sans-serif;
-        line-height: 1.6;
+      * {
+        box-sizing: border-box;
         margin: 0;
-        padding: 20px;
-        background-color: #f4f4f4;
+        padding: 0;
       }
+
+      body {
+        background: #f3f1ef;
+        min-height: 100vh;
+      }
+
       .container {
+        margin: 0 auto;
+        margin-top: 40px !important;
+        background: #fff;
+        border-radius: 10px;
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
         max-width: 800px;
-        margin: auto;
-        background: white;
-        padding: 20px;
-        border-radius: 5px;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        width: 100%;
+        padding: 30px;
+        animation: fadeIn 1s ease-in-out;
       }
+
       h1 {
+        text-align: center;
+        margin-bottom: 30px;
+        font-family: "Roboto", sans-serif;
         color: #333;
+        position: relative;
       }
+
+      h1::after {
+        content: "";
+        width: 400px;
+        height: 4px;
+        background: #4caf50;
+        display: block;
+        margin: 10px auto 0;
+        border-radius: 2px;
+      }
+
       table {
         width: 100%;
         border-collapse: collapse;
         margin-top: 20px;
       }
+
       th,
       td {
-        padding: 12px;
+        padding: 15px;
         text-align: left;
-        border-bottom: 1px solid #ddd;
+        border-bottom: 1px solid #f0f0f0;
       }
+
       th {
-        background-color: #f2f2f2;
-        font-weight: bold;
+        background-color: #f9f9f9;
+        color: #555;
+        font-weight: 600;
+        position: relative;
+      }
+
+      th::before {
+        content: attr(data-icon);
+        margin-right: 8px;
+        color: #4caf50;
+      }
+
+      tr.header-row th {
+        font-size: 1.25rem;
+        font-weight: 600;
+        background-color: #e0f7fa;
+        color: black;
+      }
+
+      tr:hover {
+        background-color: #f1f1f1;
+        transition: background-color 0.3s ease;
+      }
+
+      .info-icon {
+        color: #4caf50;
+        margin-right: 8px;
+      }
+
+      .message {
+        text-align: center;
+        font-size: 1.1em;
+        color: #777;
+        margin-top: 20px;
+      }
+
+      /* Responsive Design */
+      @media (max-width: 600px) {
+        th,
+        td {
+          padding: 12px;
+        }
+
+        h1 {
+          font-size: 1.8em;
+        }
       }
     </style>
   </head>
   <body>
+    {% include 'navbar.html' %}
     <div class="container">
-      <h1>IP Address Information</h1>
+      <h1>
+        <i class="fas fa-network-wired info-icon"></i>IP Address Information
+      </h1>
       {% if ip_info %}
       <table>
-        <tr>
-          <th>Information</th>
-          <th>Value</th>
+        <tr class="header-row">
+          <th data-icon="📄">Information</th>
+          <th data-icon="🔍">Value</th>
         </tr>
         <tr>
           <td>IPv4 Address</td>
@@ -91,7 +174,9 @@
         </tr>
       </table>
       {% else %}
-      <p>Unable to retrieve IP information. Please try again later.</p>
+      <p class="message">
+        Unable to retrieve IP information. Please try again later.
+      </p>
       {% endif %}
     </div>
   </body>
