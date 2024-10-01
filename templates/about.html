@@ -4,9 +4,39 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>About Us</title>
-    <style></style>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        background: #f3f1ef;
+      }
+      .container {
+        display: flex;
+        flex-direction: column;
+        padding: 2rem 14rem 2rem 14rem;
+      }
+      .container-about {
+        display: flex;
+        flex-direction: column;
+        background: #ffff;
+        padding: 40px;
+        border-radius: 12px;
+        border: 2px black solid;
+        gap: 25px;
+      }
+      h1 {
+        text-align: center;
+        padding: 20px 0px 20px 0px;
+      }
+      p {
+        font-size: 1.2rem;
+      }
+    </style>
   </head>
   <body>
+    {% include 'navbar.html' %}
     <div class="container">
       <h1>About Us</h1>
       <div class="container-about">
