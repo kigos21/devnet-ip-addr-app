@@ -119,5 +119,64 @@
       }
     </style>
   </head>
-  <body></body>
+  <body>
+    {% include 'navbar.html' %}
+    <div class="container">
+      <h1>
+        <i class="fas fa-network-wired info-icon"></i>IP Address Information
+      </h1>
+      {% if ip_info %}
+      <table>
+        <tr class="header-row">
+          <th data-icon="📄">Information</th>
+          <th data-icon="🔍">Value</th>
+        </tr>
+        <tr>
+          <td>IPv4 Address</td>
+          <td>{{ ip_info.ipv4 }}</td>
+        </tr>
+        <tr>
+          <td>IPv6 Address</td>
+          <td>{{ ip_info.ipv6 }}</td>
+        </tr>
+        <tr>
+          <td>Country</td>
+          <td>{{ ip_info.country }}</td>
+        </tr>
+        <tr>
+          <td>Region</td>
+          <td>{{ ip_info.region }}</td>
+        </tr>
+        <tr>
+          <td>City</td>
+          <td>{{ ip_info.city }}</td>
+        </tr>
+        <tr>
+          <td>Latitude</td>
+          <td>{{ ip_info.latitude }}</td>
+        </tr>
+        <tr>
+          <td>Longitude</td>
+          <td>{{ ip_info.longitude }}</td>
+        </tr>
+        <tr>
+          <td>ISP</td>
+          <td>{{ ip_info.isp }}</td>
+        </tr>
+        <tr>
+          <td>ASN</td>
+          <td>{{ ip_info.asn }}</td>
+        </tr>
+        <tr>
+          <td>Country Code</td>
+          <td>{{ ip_info.country_code }}</td>
+        </tr>
+      </table>
+      {% else %}
+      <p class="message">
+        Unable to retrieve IP information. Please try again later.
+      </p>
+      {% endif %}
+    </div>
+  </body>
 </html>
