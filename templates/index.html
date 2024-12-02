@@ -8,13 +8,28 @@
       href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Open+Sans:wght@400;600&display=swap"
       rel="stylesheet"
     />
-    <link
+    <!-- <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
       integrity="sha512-p0x0jI4+3+Z2g+H1HcE+ly7Iy7M6JgB2mDzbHQ5ZX2sYhC5V6cV7QFV9UkDrhYkKxOt3c+YjvU1qj6X3zWfaGQ=="
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
+    /> -->
+
+    <!-- Leaflet CSS -->
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+      integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+      crossorigin=""
     />
+    <!-- Make sure you put this AFTER Leaflet's CSS -->
+    <script
+      src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+      integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+      crossorigin=""
+    ></script>
+
     <style>
       * {
         box-sizing: border-box;
@@ -28,6 +43,16 @@
       }
 
       .container {
+        display: flex;
+        flex-direction: row;
+      }
+
+      .tablePadding {
+        padding: 1rem;
+        width: 50%;
+      }
+
+      .tableContainer {
         margin: 0 auto;
         margin-top: 40px !important;
         background: #fff;
@@ -37,6 +62,15 @@
         width: 100%;
         padding: 30px;
         animation: fadeIn 1s ease-in-out;
+      }
+
+      .rightContainer {
+        display: flex;
+        flex-direction: column;
+        width: 50%;
+        margin-top: 40px !important;
+        padding: 1rem 4rem 1rem 0rem;
+        gap: 14px;
       }
 
       h1 {
@@ -107,6 +141,27 @@
         margin-top: 20px;
       }
 
+      .pingDisplayContainer {
+        font-size: 1.15rem;
+      }
+
+      .export-btn {
+        padding: 0.5rem 0.25rem;
+        font-size: 1rem;
+        border: 1px solid black;
+        background-color: white;
+        border-radius: 8px;
+      }
+
+      .mapContainer {
+        border: 2px solid black;
+        border-radius: 8px;
+      }
+
+      #map {
+        height: 604px;
+      }
+
       @media (max-width: 600px) {
         th,
         td {
@@ -119,64 +174,188 @@
       }
     </style>
   </head>
+
   <body>
     {% include 'navbar.html' %}
     <div class="container">
-      <h1>
-        <i class="fas fa-network-wired info-icon"></i>IP Address Information
-      </h1>
-      {% if ip_info %}
-      <table>
-        <tr class="header-row">
-          <th data-icon="📄">Information</th>
-          <th data-icon="🔍">Value</th>
-        </tr>
-        <tr>
-          <td>IPv4 Address</td>
-          <td>{{ ip_info.ipv4 }}</td>
-        </tr>
-        <tr>
-          <td>IPv6 Address</td>
-          <td>{{ ip_info.ipv6 }}</td>
-        </tr>
-        <tr>
-          <td>Country</td>
-          <td>{{ ip_info.country }}</td>
-        </tr>
-        <tr>
-          <td>Region</td>
-          <td>{{ ip_info.region }}</td>
-        </tr>
-        <tr>
-          <td>City</td>
-          <td>{{ ip_info.city }}</td>
-        </tr>
-        <tr>
-          <td>Latitude</td>
-          <td>{{ ip_info.latitude }}</td>
-        </tr>
-        <tr>
-          <td>Longitude</td>
-          <td>{{ ip_info.longitude }}</td>
-        </tr>
-        <tr>
-          <td>ISP</td>
-          <td>{{ ip_info.isp }}</td>
-        </tr>
-        <tr>
-          <td>ASN</td>
-          <td>{{ ip_info.asn }}</td>
-        </tr>
-        <tr>
-          <td>Country Code</td>
-          <td>{{ ip_info.country_code }}</td>
-        </tr>
-      </table>
-      {% else %}
-      <p class="message">
-        Unable to retrieve IP information. Please try again later.
-      </p>
-      {% endif %}
+      <div class="tablePadding">
+        <div class="tableContainer">
+          <h1>
+            <i class="fas fa-network-wired info-icon"></i>IP Address Information
+          </h1>
+          {% if ip_info %}
+          <table>
+            <tr class="header-row">
+              <th data-icon="📄">Information</th>
+              <th data-icon="🔍">Value</th>
+            </tr>
+            <tr>
+              <td>IPv4 Address</td>
+              <td>{{ ip_info.ipv4 }}</td>
+            </tr>
+            <tr>
+              <td>IPv6 Address</td>
+              <td>{{ ip_info.ipv6 }}</td>
+            </tr>
+            <tr>
+              <td>Country</td>
+              <td>{{ ip_info.country }}</td>
+            </tr>
+            <tr>
+              <td>Region</td>
+              <td>{{ ip_info.region }}</td>
+            </tr>
+            <tr>
+              <td>City</td>
+              <td>{{ ip_info.city }}</td>
+            </tr>
+            <tr>
+              <td>Latitude</td>
+              <td>{{ ip_info.latitude }}</td>
+            </tr>
+            <tr>
+              <td>Longitude</td>
+              <td>{{ ip_info.longitude }}</td>
+            </tr>
+            <tr>
+              <td>ISP</td>
+              <td>{{ ip_info.isp }}</td>
+            </tr>
+            <tr>
+              <td>ASN</td>
+              <td>{{ ip_info.asn }}</td>
+            </tr>
+            <tr>
+              <td>Country Code</td>
+              <td>{{ ip_info.country_code }}</td>
+            </tr>
+          </table>
+          {% else %}
+          <p class="message">
+            Unable to retrieve IP information. Please try again later.
+          </p>
+          {% endif %}
+        </div>
+      </div>
+      <div class="rightContainer">
+        <div class="pingDisplayContainer" id="pingDisplay">Ping: -- ms</div>
+        <div><button class="export-btn">Export to JSON</button></div>
+        <div class="mapContainer" id="map"></div>
+      </div>
     </div>
+
+    <script>
+      async function pingTest(
+        url = "https://www.google.com",
+        displayElementId = "pingDisplay"
+      ) {
+        const displayElement = document.getElementById(displayElementId);
+
+        if (!displayElement) {
+          console.error(
+            "Display element not found. Ensure an element with the provided ID exists."
+          );
+          return;
+        }
+
+        setInterval(async () => {
+          try {
+            const startTime = performance.now();
+            await fetch(url, { mode: "no-cors" }); // Using no-cors for simple request
+            const endTime = performance.now();
+
+            const ping = Math.round(endTime - startTime);
+            displayElement.innerText = `Ping: ${ping} ms`;
+          } catch (error) {
+            console.error("Error while pinging:", error);
+            displayElement.innerText = "Ping: Failed";
+          }
+        }, 2000);
+      }
+
+      // Start the ping test
+      window.onload = () => {
+        pingTest();
+      };
+    </script>
+
+    <script>
+      // Map Element
+      const mapElement = document.querySelector("div#map");
+
+      // Parse coordinates
+      const latitude = parseFloat("{{ ip_info.latitude }}");
+      const longitude = parseFloat("{{ ip_info.longitude }}");
+
+      // Validate coordinates
+      if (!isNaN(latitude) && !isNaN(longitude)) {
+        // Initialize the map
+        const map = L.map("map").setView([latitude, longitude], 10);
+
+        // Add tile layer
+        L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+          attribution:
+            '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+        }).addTo(map);
+
+        // Add a marker
+        L.marker([latitude, longitude])
+          .addTo(map)
+          .bindPopup(`Location: {{ ip_info.city }}, {{ ip_info.country }}`)
+          .openPopup();
+      } else {
+        // Handle invalid coordinates
+        mapElement.innerHTML =
+          "Unable to display map. Invalid location coordinates.";
+        mapElement.style.height = "100px";
+        mapElement.style.display = "flex";
+        mapElement.style.justifyContent = "center";
+        mapElement.style.alignItems = "center";
+        mapElement.style.backgroundColor = "#f0f0f0";
+        mapElement.style.color = "#666";
+      }
+    </script>
+
+    <script>
+      function exportToJSON() {
+        // Collect IP information from the table
+        const ipInfo = {
+          ipv4: document.querySelector("td:nth-child(2)").textContent,
+          ipv6: document.querySelectorAll("td:nth-child(2)")[1].textContent,
+          country: document.querySelectorAll("td:nth-child(2)")[2].textContent,
+          region: document.querySelectorAll("td:nth-child(2)")[3].textContent,
+          city: document.querySelectorAll("td:nth-child(2)")[4].textContent,
+          latitude: document.querySelectorAll("td:nth-child(2)")[5].textContent,
+          longitude:
+            document.querySelectorAll("td:nth-child(2)")[6].textContent,
+          isp: document.querySelectorAll("td:nth-child(2)")[7].textContent,
+          asn: document.querySelectorAll("td:nth-child(2)")[8].textContent,
+          countryCode:
+            document.querySelectorAll("td:nth-child(2)")[9].textContent,
+        };
+
+        // Convert to JSON
+        const jsonContent = JSON.stringify(ipInfo, null, 2);
+
+        // Create a Blob with the JSON content
+        const blob = new Blob([jsonContent], { type: "application/json" });
+
+        // Create a link element to trigger download
+        const link = document.createElement("a");
+        link.href = URL.createObjectURL(blob);
+        link.download = `ip_info_${new Date()
+          .toISOString()
+          .replace(/:/g, "-")}.json`;
+
+        // Append to body, click, and remove
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+      }
+
+      const exportBtn = document.querySelector(".export-btn");
+      exportBtn.addEventListener("click", exportToJSON);
+    </script>
+    {% include 'footer.html' %}
   </body>
 </html>

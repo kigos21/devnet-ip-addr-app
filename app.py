@@ -5,8 +5,8 @@ import requests
 app = Flask(__name__)
 
 # Replace with your actual API key from ipstack.com
-API_KEY = os.environ.get('894fc5b9c8c4006aef81be23155e5eff')
-#API_KEY = "894fc5b9c8c4006aef81be23155e5eff"
+# API_KEY = os.environ.get('894fc5b9c8c4006aef81be23155e5eff')
+API_KEY = "894fc5b9c8c4006aef81be23155e5eff"
 
 def get_ip_info():
     try:
