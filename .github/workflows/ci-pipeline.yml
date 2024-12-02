@@ -29,6 +29,5 @@ jobs:
     
     # Step 4: Run Python Tests
     - name: Run Python Tests
-      run: |
-        cd tests/
-        pytest
+      working-directory: templates
+      run: pytest
