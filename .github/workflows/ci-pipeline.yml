@@ -27,7 +27,6 @@ jobs:
         pip install -r requirements.txt
         pip install pytest
     
-    # Step 4: Run Python Tests
+    # Step 5: Run Python tests
     - name: Run Python Tests
-      working-directory: templates
       run: pytest
