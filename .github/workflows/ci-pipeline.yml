@@ -10,10 +10,7 @@ on:
 
 jobs:
   test:
-    runs-on: ${{ matrix.os }}
-    strategy:
-      matrix:
-        os: [ubuntu-latest, windows-latest, macos-latest] # Add operating systems here
+    runs-on: ubuntu-latest
 
     steps:
       # Checkout the repository
@@ -24,7 +21,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
-          python-version: "3.12.1" # Specify your Python version
+          python-version: "3.10" # Specify your Python version
 
       # Install dependencies
       - name: Install dependencies
