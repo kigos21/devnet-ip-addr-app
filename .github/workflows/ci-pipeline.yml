@@ -25,8 +25,10 @@ jobs:
       run: |
         python -m pip install --upgrade pip
         pip install -r requirements.txt
-        pip install pytest  # Add this line to install pytest
+        pip install pytest
     
-    # Step 4: Run Python tests
+    # Step 4: Run Python Tests
     - name: Run Python Tests
-      run: pytest
+      run: |
+        cd tests/
+        pytest
