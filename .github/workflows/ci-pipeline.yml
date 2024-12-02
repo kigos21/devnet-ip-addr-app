@@ -29,6 +29,9 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
+      - name: Set PYTHONPATH
+        run: echo "PYTHONPATH=$PYTHONPATH:$GITHUB_WORKSPACE" >> $GITHUB_ENV
+
       # Run tests
       - name: Run tests
         run: pytest
